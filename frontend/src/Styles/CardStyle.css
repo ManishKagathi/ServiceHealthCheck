@@ -1,0 +1,32 @@
+
+@keyframes blink {
+    0%, 100% {
+      background-color: #f7fafc;
+      border-color: #f7fafc;
+    }
+    50% {
+      background-color: #edf2f7;
+      border-color: #edf2f7;
+    }
+  }
+
+    @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  .status-dot {
+    animation: pulse 1s infinite;
+  }
+  
+  .card-border {
+    animation: blink 1s infinite;
+  }
+  
+
+  
+  /* Add any additional styles here */
+  
