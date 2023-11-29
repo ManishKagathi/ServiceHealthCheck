@@ -14,3 +14,16 @@ exports.refreshService = async (req, res) => {
         return res.status(status).json({ message: 'Error refreshing service', error: error.message, status });
     }
 };
+
+exports.refreshServiceCard = async (req, res) => {
+    try {
+        const urls = JSON.parse(decodeURIComponent(req.query.url));
+        const requests = urls.map(url => axios.get(url))
+        const response = await axios.all(requests)
+        return res.json({ message: 'Service refreshed successfully', data: response.data });
+    } catch (error) {
+        const { response } = error
+        const status = response?.status || 500
+        return res.status(status).json({ message: 'Error refreshing service', error: error.message, status });
+    }
+}

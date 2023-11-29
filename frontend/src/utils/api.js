@@ -9,6 +9,14 @@ const api = {
             throw error;
         }
     },
+    refreshServiceStatus: async (serviceUrl) => {
+        try {
+            const response = await axios.get(`http://localhost:8000/api/service-status?url=${encodeURIComponent(serviceUrl)}`);
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    }
 };
 
 export default api;

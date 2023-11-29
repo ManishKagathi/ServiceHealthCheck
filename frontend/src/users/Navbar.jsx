@@ -1,4 +1,5 @@
 import React from 'react'
+import NavbarLink from '../utils/NavbarLink'
 
 const Navbar = () => {
     return (
@@ -10,11 +11,11 @@ const Navbar = () => {
                 </label>
                 <label className="text-white text-4xl font-bold">Service Haealth Check</label>
                 <ul className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-8">
-                    <li><a className="text-white uppercase hover:bg-blue-700 px-3 py-2 rounded transition duration-300" href="/">Home</a></li>
-                    <li><a className="text-white uppercase hover:bg-blue-700 px-3 py-2 rounded transition duration-300" href="/">About</a></li>
-                    <li><a className="text-white uppercase hover:bg-blue-700 px-3 py-2 rounded transition duration-300" href="/">Services</a></li>
-                    <li><a className="text-white uppercase hover:bg-blue-700 px-3 py-2 rounded transition duration-300" href="/">Contact</a></li>
-                    <li><a className="text-white uppercase hover:bg-blue-700 px-3 py-2 rounded transition duration-300" href="/">Feedback</a></li>
+                    <li><NavbarLink to="/">Home</NavbarLink></li>
+                    <li><NavbarLink to="/">About</NavbarLink></li>
+                    <li><NavbarLink to="/">Services</NavbarLink></li>
+                    <li><NavbarLink to="/">Contact</NavbarLink></li>
+                    <li><NavbarLink to="/">Feedback</NavbarLink></li>
                 </ul>
             </dev>
         </nav>

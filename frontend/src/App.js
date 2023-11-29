@@ -2,6 +2,8 @@ import React from 'react';
 import Home from './Pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './users/Navbar';
+import ServiceApis from './Pages/ServiceApis';
+
 
 
 const App = () => {
@@ -10,11 +12,11 @@ const App = () => {
         <BrowserRouter>
             <div>
                 <Navbar />
-                <Routes>
+                <Routes >
                     <Route path='/' element={<Home />} />
+                    <Route path='/services/:serviceName' element={<ServiceApis />} />
                 </Routes>
             </div>
-
         </BrowserRouter>
     );
 };
