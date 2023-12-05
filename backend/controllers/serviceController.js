@@ -16,14 +16,36 @@ exports.refreshService = async (req, res) => {
 };
 
 exports.refreshServiceCard = async (req, res) => {
+    let failedRequestsCount = 0;
     try {
         const urls = JSON.parse(decodeURIComponent(req.query.url));
         const requests = urls.map(url => axios.get(url))
-        const response = await axios.all(requests)
-        return res.json({ message: 'Service refreshed successfully', data: response.data });
+        const results = await Promise.allSettled(requests);
+        results.forEach((result, index) => {
+            if (result.status !== 'fulfilled') {
+                failedRequestsCount += 1;
+            }
+        })
+
+        if (failedRequestsCount > 0) {
+            return res.status(500).json({
+                message: 'Error occured',
+                failedRequestsCount: failedRequestsCount
+            })
+        }
+        return res.json({
+            message: 'Service refreshed successfully',
+            failedRequestsCount: failedRequestsCount
+        });
+
     } catch (error) {
         const { response } = error
         const status = response?.status || 500
-        return res.status(status).json({ message: 'Error refreshing service', error: error.message, status });
+        return res.status(status).json({
+            message: 'Error refreshing service',
+            error: error.message,
+            status: status,
+            failedRequestsCount: failedRequestsCount
+        });
     }
 }

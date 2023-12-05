@@ -7,6 +7,4 @@ router.get('/refresh', serviceController.refreshService);
 
 router.get('/service-status', serviceController.refreshServiceCard);
 
-
-
 module.exports = router;

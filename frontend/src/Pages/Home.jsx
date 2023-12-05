@@ -5,11 +5,14 @@ import AutoRefreshToggle from '../components/AutoRefreshToggle';
 import { services } from '../utils/ConfigParams';
 import { useNavigate } from 'react-router';
 import api from '../utils/api';
+import { getServiceUrls } from '../utils';
 
 
 
 const Home = () => {
+
     const navigate = useNavigate();
+
     const [refreshAllEnabled, setrefreshAllEnabled] = useState(false);
     const toggleRefreshAll = () => {
         setrefreshAllEnabled(!refreshAllEnabled);
@@ -34,12 +37,13 @@ const Home = () => {
                 />
                 <RefreshAllButton toggleRefreshAll={toggleRefreshAll} />
             </div>
+
             <div className="grid grid-cols-4 gap-1 cursor-pointer">
                 {Object.entries(services).map(([key, value], index) => (
                     <ServiceCard
                         key={index}
                         serviceName={key}
-                        serviceUrl={JSON.stringify(Object.values(value))}
+                        serviceUrl={JSON.stringify(getServiceUrls(key))}
                         autoRefreshEnabled={autoRefreshEnabled}
                         handleClick={() => handleClick(key)}
                         apiHandler={api.refreshServiceStatus}
