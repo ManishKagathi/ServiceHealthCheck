@@ -8,13 +8,16 @@ const ServiceCard = ({ serviceName, serviceUrl, autoRefreshEnabled, toggleRefres
     const [lastRefreshTime, setLastRefreshTime] = useState('');
     const [serviceStatus, setServiceStatus] = useState('');
     const [errorCode, setErrorCode] = useState('');
-    const [failedRequestsCount, setFailedRequestsCount] = useState(0);
+    const [failedRequestsCount, setFailedRequestsCount] = useState(-1);
+
+    const urls = JSON.parse(serviceUrl);
 
 
     const refreshService = async () => {
         try {
             const response = await apiHandler(serviceUrl);
             setServiceStatus('up');
+            setFailedRequestsCount(0);
         } catch (error) {
             const { response: { status = 500, data = {} } = {} } = error
             setFailedRequestsCount(data?.failedRequestsCount || 0)
@@ -25,6 +28,11 @@ const ServiceCard = ({ serviceName, serviceUrl, autoRefreshEnabled, toggleRefres
             setLastRefreshTime(`Last Updated at ${currentTime}`);
         }
     };
+
+    const handleRefreshServiseClick = (e) => {
+        e.stopPropagation();
+        refreshService();
+    }
 
     useEffect(() => {
         let refreshFn = null;
@@ -45,16 +53,19 @@ const ServiceCard = ({ serviceName, serviceUrl, autoRefreshEnabled, toggleRefres
         refreshService();
     }, [toggleRefreshAll]);
 
+    if (serviceName === 'Onboarding') {
+        console.log(failedRequestsCount, ((urls.length) / 2), getServiceCardColor(failedRequestsCount, urls, "border"));
+    }
 
     return (
         <div className={`bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-50 rounded-lg shadow-lg
-        p-8 max-w-md mx-auto border-4 animate-blink z-8
-         ${getServiceCardColor(failedRequestsCount, serviceUrl, "border")}
+        p-8 m-1 max-w-md mx-auto border-4 animate-blink z-0 w-full 
+         ${getServiceCardColor(failedRequestsCount, urls, "border")}
          `}
             onClick={handleClick}
         >
             <div h2 className={`text-2xl font-bold mb-4
-              ${getServiceCardColor(failedRequestsCount, serviceUrl, "text")}
+              ${getServiceCardColor(failedRequestsCount, urls, "text")}
              `}>
                 {serviceName}
             </div>
@@ -62,19 +73,19 @@ const ServiceCard = ({ serviceName, serviceUrl, autoRefreshEnabled, toggleRefres
             <div div className="flex items-center mb-6" >
 
                 <div className={`w-4 h-4 rounded-full mr-2 status-dot
-                 ${failedRequestsCount === 0 ? 'bg-green-600' : failedRequestsCount < Object.keys(serviceUrl).length ? 'bg-orange-400' : 'bg-red-600'}
+                 ${getServiceCardColor(failedRequestsCount, urls, "bg")}
                  `}></div>
 
                 <p className={`text-ll font-bold
-                 ${failedRequestsCount === 0 ? 'text-green-600' : failedRequestsCount < Object.keys(serviceUrl).length ? 'text-orange-400' : 'text-red-600'}
+              ${getServiceCardColor(failedRequestsCount, urls, "text")}
                  `}>
-                    {serviceStatus === 'up' ? `Running... 200 OK` : `Down... ${errorCode}`}</p>
+                    {serviceStatus === 'up' ? `Running... 200 OK` : 'Down...'}</p>
             </div>
 
             <p className="text-sm font-semibold text-gray-600 mb-6">{lastRefreshTime}</p>
-            <button onClick={refreshService}
+            <button onClick={handleRefreshServiseClick}
                 className="bg-blue-500 text-white px-3 py-1 rounded-md mt-2 float-right hover:bg-blue-600
-                 active:translate-y-1 z-9">
+                 active:translate-y-1 z-10">
                 Refresh
             </button>
         </div>
@@ -82,3 +93,4 @@ const ServiceCard = ({ serviceName, serviceUrl, autoRefreshEnabled, toggleRefres
 };
 
 export default ServiceCard;
+

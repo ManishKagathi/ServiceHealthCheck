@@ -9,7 +9,7 @@ const Navbar = () => {
                 <label for="check" className="text-white text-4xl cursor-pointer lg:hidden">
                     <i className="fas fa-bars"></i>
                 </label>
-                <label className="text-white text-4xl font-bold">Service Haealth Check</label>
+                <label className="text-white text-4xl font-bold">Service Health Check</label>
                 <ul className="hidden lg:flex lg:items-center lg:justify-end lg:space-x-8">
                     <li><NavbarLink to="/">Home</NavbarLink></li>
                     <li><NavbarLink to="/">About</NavbarLink></li>

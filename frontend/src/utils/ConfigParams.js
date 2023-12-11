@@ -35,14 +35,6 @@ export const services = {
       'pf-onboarding': 'https://api-staging.paytmmoney.com/pm/api/v2/users/boot/410767416'
     }
   },
-  Bank: {
-    PMLService: {
-      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
-    },
-    ThirdPartyService: {
-      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
-    },
-  },
   Growth: {
     PMLService: {
       'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
@@ -51,7 +43,7 @@ export const services = {
       'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
     },
   },
-  Subscription: {
+  Affiliate: {
     PMLService: {
       'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
     },
@@ -59,4 +51,44 @@ export const services = {
       'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
     },
   },
-};
+  Payments: {
+    PMLService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+    ThirdPartyService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+  },
+  MF: {
+    PMLService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+    ThirdPartyService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+  },
+  FO: {
+    PMLService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+    ThirdPartyService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+  },
+  BO: {
+    PMLService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+    ThirdPartyService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+  },
+  FMS: {
+    PMLService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+    ThirdPartyService: {
+      'pf-bank': 'https://pf-stg.paytmmoney.com/pf-crm/status'
+    },
+  },
+}

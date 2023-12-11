@@ -38,7 +38,7 @@ const Home = () => {
                 <RefreshAllButton toggleRefreshAll={toggleRefreshAll} />
             </div>
 
-            <div className="grid grid-cols-4 gap-1 cursor-pointer">
+            <div className="grid grid-cols-4 gap-2 cursor-pointer">
                 {Object.entries(services).map(([key, value], index) => (
                     <ServiceCard
                         key={index}
